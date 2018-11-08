@@ -1,0 +1,5 @@
+# Reactive Extension, Androidで言うところのDataBindingの役割
+github "ReactiveX/RxSwift" ~> 4.0.0
+
+# Date関連の操作をしやすくするライブラリ, 日付系の操作に使う可能性があるので入れている
+github "malcommac/SwiftDate" ~> 4.5.0
