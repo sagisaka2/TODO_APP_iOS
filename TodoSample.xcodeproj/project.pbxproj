@@ -17,12 +17,8 @@
 		E33DF8E42076046C00618EF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E33DF8E32076046C00618EF7 /* Assets.xcassets */; };
 		E33DF8E72076046C00618EF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E33DF8E52076046C00618EF7 /* LaunchScreen.storyboard */; };
 		E33DF8F22076046D00618EF7 /* TodoSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33DF8F12076046D00618EF7 /* TodoSampleTests.swift */; };
-		E7252DBF219A0B7200C33B80 /* TodoCreate2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7252DBE219A0B7200C33B80 /* TodoCreate2.swift */; };
 		E7252DC1219A10DC00C33B80 /* TodoCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7252DC0219A10DC00C33B80 /* TodoCreate.swift */; };
-		E7252DC5219BBC3C00C33B80 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7252DC4219BBC3C00C33B80 /* CustomNavigationBar.swift */; };
 		E7252DC7219BBCC000C33B80 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7252DC6219BBCC000C33B80 /* CustomNavigationController.swift */; };
-		E7252DC9219BBD4F00C33B80 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7252DC8219BBD4F00C33B80 /* SecondViewController.swift */; };
-		E7252DCD219C00E700C33B80 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7252DCC219C00E700C33B80 /* Entity.swift */; };
 		E7252DDD21ABDAC700C33B80 /* TimeChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7252DDC21ABDAC700C33B80 /* TimeChangeView.swift */; };
 		E7252DDF21ABDBCD00C33B80 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7252DDE21ABDBCD00C33B80 /* CategoryView.swift */; };
 /* End PBXBuildFile section */
@@ -57,12 +53,8 @@
 		E33DF8ED2076046D00618EF7 /* TodoSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E33DF8F12076046D00618EF7 /* TodoSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSampleTests.swift; sourceTree = "<group>"; };
 		E33DF8F32076046D00618EF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7252DBE219A0B7200C33B80 /* TodoCreate2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCreate2.swift; sourceTree = "<group>"; };
 		E7252DC0219A10DC00C33B80 /* TodoCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCreate.swift; sourceTree = "<group>"; };
-		E7252DC4219BBC3C00C33B80 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		E7252DC6219BBCC000C33B80 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
-		E7252DC8219BBD4F00C33B80 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		E7252DCC219C00E700C33B80 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		E7252DDC21ABDAC700C33B80 /* TimeChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChangeView.swift; sourceTree = "<group>"; };
 		E7252DDE21ABDBCD00C33B80 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		FCECA55DFC5401CC7B07E2D1 /* Pods-TodoSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TodoSample/Pods-TodoSample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,9 +131,6 @@
 			children = (
 				E33DF8DC2076046C00618EF7 /* AppDelegate.swift */,
 				E33DF8DE2076046C00618EF7 /* ViewController.swift */,
-				E7252DCC219C00E700C33B80 /* Entity.swift */,
-				E7252DC8219BBD4F00C33B80 /* SecondViewController.swift */,
-				E7252DBE219A0B7200C33B80 /* TodoCreate2.swift */,
 				E7252DC0219A10DC00C33B80 /* TodoCreate.swift */,
 				E7252DDE21ABDBCD00C33B80 /* CategoryView.swift */,
 				E7252DDC21ABDAC700C33B80 /* TimeChangeView.swift */,
@@ -149,7 +138,6 @@
 				E33DF8E32076046C00618EF7 /* Assets.xcassets */,
 				E33DF8E52076046C00618EF7 /* LaunchScreen.storyboard */,
 				E33DF8E82076046C00618EF7 /* Info.plist */,
-				E7252DC4219BBC3C00C33B80 /* CustomNavigationBar.swift */,
 				E7252DC6219BBCC000C33B80 /* CustomNavigationController.swift */,
 			);
 			path = TodoSample;
@@ -358,11 +346,7 @@
 				E33DF8DF2076046C00618EF7 /* ViewController.swift in Sources */,
 				E7252DDF21ABDBCD00C33B80 /* CategoryView.swift in Sources */,
 				E7252DC1219A10DC00C33B80 /* TodoCreate.swift in Sources */,
-				E7252DBF219A0B7200C33B80 /* TodoCreate2.swift in Sources */,
-				E7252DCD219C00E700C33B80 /* Entity.swift in Sources */,
-				E7252DC9219BBD4F00C33B80 /* SecondViewController.swift in Sources */,
 				E33DF8DD2076046C00618EF7 /* AppDelegate.swift in Sources */,
-				E7252DC5219BBC3C00C33B80 /* CustomNavigationBar.swift in Sources */,
 				E7252DDD21ABDAC700C33B80 /* TimeChangeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
