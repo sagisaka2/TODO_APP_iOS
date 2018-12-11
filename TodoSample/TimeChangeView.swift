@@ -13,7 +13,9 @@ import RxCocoa
 class TimeChangeView: UIViewController {
     
     var now = Date()
-    var text1 = String()
+    var category = String()
+    var todoTitle = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -54,16 +56,17 @@ class TimeChangeView: UIViewController {
     
     func getNowClockString() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM月dd日' 'HH時mm分"
+        formatter.dateFormat = "MM月dd日"
         return formatter.string(from: now)
     }
     
     @objc func doneTapped(sender: UIDatePicker) {
-        let secondVC = TodoCreate()
-        secondVC.text = getNowClockString()
-        secondVC.text1 = text1
+        let todoCreate = TodoCreate()
+        todoCreate.timeSchedule = getNowClockString()
+        todoCreate.category = category
+        todoCreate.todoTitle = todoTitle
         print(getNowClockString())
-        self.navigationController?.pushViewController(secondVC, animated: true)
+        self.navigationController?.pushViewController(todoCreate, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
