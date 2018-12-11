@@ -10,11 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TodoCreate: UIViewController {
+class TodoCreate: UIViewController, UITextFieldDelegate {
     var disposeBag = DisposeBag()
     var textfield: UITextField!
-    var text = String()
-    var text1 = String()
+    var timeSchedule = String()
+    var category = String()
+    var todoTitle = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +23,12 @@ class TodoCreate: UIViewController {
         //ここでタイトルを設定
         self.title = "TODO追加"
         self.view.backgroundColor = UIColor.white
-        
         textfield = UITextField()
         let viewWidth = UIScreen.main.bounds.size.width
         let viewHeight = UIScreen.main.bounds.size.height
         
-        textfield.frame = CGRect(x: 0, y: 118, width: viewWidth, height: 50)
-        
+        textfield.frame = CGRect(x: 0, y: self.navigationController!.navigationBar.bounds.size.height+20, width: viewWidth, height: 50)
+        textfield.text = todoTitle
         //アウトラインを表示
         textfield.borderStyle = .roundedRect
         
@@ -41,6 +41,8 @@ class TodoCreate: UIViewController {
         //文字が何も入力されていない時に表示される文字(薄っすら見える文字)
         textfield.placeholder = "入力してください"
         
+        textfield.delegate = self
+
         //viewにtextfieldをsubviewとして追加
         self.view.addSubview(textfield)
         
@@ -56,65 +58,80 @@ class TodoCreate: UIViewController {
         //ボタンを設置
         self.navigationItem.rightBarButtonItem = doneBtn
         
-        //timeChangeBtnに移動するボタン
-        let timeChangeBtn = UIButton()
-        timeChangeBtn.frame = CGRect(x: 0, y: 168, width: viewWidth, height: 50)
-        timeChangeBtn.addTarget(self, action: #selector(timeChangeBtnTapped), for: .touchUpInside)
-        timeChangeBtn.setTitle("時間", for: .normal)
-        timeChangeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
-        timeChangeBtn.backgroundColor = UIColor.blue
-        self.view.addSubview(timeChangeBtn)
-        
-        //セカンドビューに移動するボタン
+        //カテゴリ一覧に移動するボタン
         let categoryBtn = UIButton()
-        categoryBtn.frame = CGRect(x: 0, y: 218, width: viewWidth, height: 50)
+        categoryBtn.frame = CGRect(x: 0, y: self.navigationController!.navigationBar.bounds.size.height+70, width: viewWidth, height: 50)
         categoryBtn.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
-        categoryBtn.setTitle("カテゴリ一覧", for: .normal)
+        categoryBtn.setTitle(" カテゴリ一覧", for: .normal)
+        categoryBtn.setTitleColor(UIColor.black, for: .normal)
         categoryBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
-        categoryBtn.backgroundColor = UIColor.brown
+        categoryBtn.backgroundColor = UIColor.white
+        categoryBtn.layer.borderWidth = 0.5
+        categoryBtn.layer.cornerRadius = 5.0
+        categoryBtn.layer.borderColor = UIColor.black.cgColor
         self.view.addSubview(categoryBtn)
         
-        let label = UILabel(frame: CGRect(x: viewWidth-100, y: 198, width: 100, height: 20))
+        //時間に移動するボタン
+        let timeChangeBtn = UIButton()
+        timeChangeBtn.frame = CGRect(x: 0, y: self.navigationController!.navigationBar.bounds.size.height+120, width: viewWidth, height: 50)
+        timeChangeBtn.addTarget(self, action: #selector(timeChangeBtnTapped), for: .touchUpInside)
+        timeChangeBtn.setTitle(" 時間", for: .normal)
+        timeChangeBtn.setTitleColor(UIColor.black, for: .normal)
+        timeChangeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
+        timeChangeBtn.backgroundColor = UIColor.white
+        timeChangeBtn.layer.borderWidth = 0.5
+        timeChangeBtn.layer.cornerRadius = 5.0
+        timeChangeBtn.layer.borderColor = UIColor.black.cgColor
+        self.view.addSubview(timeChangeBtn)
         
-        label.text = text
-        // 文字の色を白にする.
-        label.textColor = UIColor.white
+        let labelCategory = UILabel(frame: CGRect(x: viewWidth-100, y: self.navigationController!.navigationBar.bounds.size.height+90, width: 100, height: 20))
         
-        self.view.addSubview(label)
+        labelCategory.text = category + " >"
+
+        labelCategory.textColor = UIColor.gray
         
-        let label1 = UILabel(frame: CGRect(x: viewWidth-100, y: 248, width: 100, height: 20))
+        self.view.addSubview(labelCategory)
         
-        label1.text = text1
-        // 文字の色を白にする.
-        label1.textColor = UIColor.white
+        let labelTimeSchedule = UILabel(frame: CGRect(x: viewWidth-100, y: self.navigationController!.navigationBar.bounds.size.height+140, width: 100, height: 20))
         
-        self.view.addSubview(label1)
+        labelTimeSchedule.text = timeSchedule + " >"
+
+        labelTimeSchedule.textColor = UIColor.gray
+        
+        self.view.addSubview(labelTimeSchedule)
         
     }
     
     @objc func timeChangeBtnTapped() {
-        let secondVC = TimeChangeView()
-        secondVC.text1 = text1
-        self.navigationController?.pushViewController(secondVC, animated: true)
+        let timeChangeView = TimeChangeView()
+        timeChangeView.category = category
+        timeChangeView.todoTitle = todoTitle
+        self.navigationController?.pushViewController(timeChangeView, animated: true)
     }
     
     @objc func categoryBtnTapped() {
-        let thirdVC = CategoryView()
-        thirdVC.text = text
-        self.navigationController?.pushViewController(thirdVC, animated: true)
+        let categoryView = CategoryView()
+        categoryView.timeSchedule = timeSchedule
+        categoryView.todoTitle = todoTitle
+        self.navigationController?.pushViewController(categoryView, animated: true)
     }
     
     @objc func cancelTapped() {
-        let secondVC = ViewController()
-        self.navigationController?.pushViewController(secondVC, animated: true)
+        let viewController = ViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     @objc func doneTapped() {
-        let secondVC = ViewController()
-        print(secondVC.myItems.count)
-        secondVC.myItems.append(text)
-        secondVC.titleName.append(text1)
-        self.navigationController?.pushViewController(secondVC, animated: true)
+        let viewController = ViewController()
+        viewController.addTodo = (Todo(todoTitle, category, timeSchedule))
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        todoTitle = textfield.text! as String
+        
+        return true
     }
     
     override func didReceiveMemoryWarning() {
