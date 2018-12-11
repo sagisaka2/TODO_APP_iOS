@@ -16,7 +16,8 @@ class CategoryView: UIViewController, UITableViewDelegate, UITableViewDataSource
     private var myItems: NSArray = []
     
     private let refreshCtl = UIRefreshControl()
-    var text = String()
+    var timeSchedule = String()
+    var todoTitle = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,16 +71,16 @@ class CategoryView: UIViewController, UITableViewDelegate, UITableViewDataSource
     //テーブルビューのセルが押されたら呼ばれる
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)番のセルを選択しました！ ")
-        print(myItems[indexPath.row])
-        let todoVC = TodoCreate()
-        todoVC.text1 = myItems[indexPath.row] as! String
-        todoVC.text = text
-        self.navigationController?.pushViewController(todoVC, animated: true)
+        let todoCreate = TodoCreate()
+        todoCreate.category = myItems[indexPath.row] as! String
+        todoCreate.timeSchedule = timeSchedule
+        todoCreate.todoTitle = todoTitle
+        self.navigationController?.pushViewController(todoCreate, animated: true)
     }
     
     @objc func backBtnTapped() {
-        let todoVC = TodoCreate()
-        self.navigationController?.pushViewController(todoVC, animated: true)
+        let todoCreate = TodoCreate()
+        self.navigationController?.pushViewController(todoCreate, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
