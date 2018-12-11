@@ -21,6 +21,7 @@
 		E7252DC7219BBCC000C33B80 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7252DC6219BBCC000C33B80 /* CustomNavigationController.swift */; };
 		E7252DDD21ABDAC700C33B80 /* TimeChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7252DDC21ABDAC700C33B80 /* TimeChangeView.swift */; };
 		E7252DDF21ABDBCD00C33B80 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7252DDE21ABDBCD00C33B80 /* CategoryView.swift */; };
+		E7252DE121BE61C700C33B80 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7252DE021BE61C700C33B80 /* Todo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		E7252DC6219BBCC000C33B80 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		E7252DDC21ABDAC700C33B80 /* TimeChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChangeView.swift; sourceTree = "<group>"; };
 		E7252DDE21ABDBCD00C33B80 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		E7252DE021BE61C700C33B80 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		FCECA55DFC5401CC7B07E2D1 /* Pods-TodoSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TodoSample/Pods-TodoSample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +133,7 @@
 			children = (
 				E33DF8DC2076046C00618EF7 /* AppDelegate.swift */,
 				E33DF8DE2076046C00618EF7 /* ViewController.swift */,
+				E7252DE021BE61C700C33B80 /* Todo.swift */,
 				E7252DC0219A10DC00C33B80 /* TodoCreate.swift */,
 				E7252DDE21ABDBCD00C33B80 /* CategoryView.swift */,
 				E7252DDC21ABDAC700C33B80 /* TimeChangeView.swift */,
@@ -342,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7252DE121BE61C700C33B80 /* Todo.swift in Sources */,
 				E7252DC7219BBCC000C33B80 /* CustomNavigationController.swift in Sources */,
 				E33DF8DF2076046C00618EF7 /* ViewController.swift in Sources */,
 				E7252DDF21ABDBCD00C33B80 /* CategoryView.swift in Sources */,
