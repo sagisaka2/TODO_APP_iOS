@@ -1,56 +1,43 @@
 //
-//  Todo.swift
-//  ViewController
+//  Time.swift
+//  TodoSample
 //
-//  Created by 匂坂 勇仁 on H30/11/08.
+//  Created by 匂坂 勇仁 on H30/11/26.
 //  Copyright © 平成30年 TeamLab. All rights reserved.
 //
-import UIKit
-import RxSwift
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+import UIKit
+
+class CategoryView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //テーブルビューインスタンス
     private var myTableView: UITableView!
     
-    var tableView: UITableView!
-    
-    var todoList = [Todo]()
-    
-    var disposeBag = DisposeBag()
-    
-    var addTodo = Todo.karaData
+    private var myItems: NSArray = []
     
     private let refreshCtl = UIRefreshControl()
+    var timeSchedule = String()
+    var todoTitle = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        todoList.append(Todo.dummyData1)
-        todoList.append(Todo.dummyData2)
-        todoList.append(Todo.dummyData3)
-        
-        if addTodo.todoTitle != "" && addTodo.category != "" && addTodo.timeSchedule != ""{
-            todoList.append(addTodo)
-        }
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
         
         //ここでタイトルを設定
-        self.title = "TODO APP Sample"
+        self.title = "Category Select"
         self.view.backgroundColor = UIColor.white
-        
-        let backBtn = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(self.backBtnTapped))
-        backBtn.tintColor = UIColor.blue
-        self.navigationItem.rightBarButtonItem = backBtn
-        
+
+        //テーブルビューに表示する配列
+        myItems = ["個人", "買い物", "仕事", "重要"]
         //Viewの大きさを取得
         let viewWidth = UIScreen.main.bounds.size.width
         let viewHeight = UIScreen.main.bounds.size.height
         
         //テーブルビューの初期化
         myTableView = UITableView()
+        
         //デリゲートの設定
         myTableView.delegate = self
         myTableView.dataSource = self
@@ -65,41 +52,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         myTableView.separatorStyle = .none
         myTableView.tableFooterView = UIView()
         
-//        let label = UILabel(frame: CGRect(x: viewWidth-100, y: self.navigationController!.navigationBar.bounds.size.height+40, width: 100, height: 20))
-//
-//        label.text = todoList[0].timeSchedule
-//        label.textColor = UIColor.black
-//
-//        self.view.addSubview(label)
-        
     }
     
     //テーブルビューのセルの数を設定する
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //テーブルビューのセルの数はtodoList配列の数
-        return todoList.count
+        //テーブルビューのセルの数はmyItems配列の数とした
+        return self.myItems.count
     }
     
     //テーブルビューのセルの中身を設定する
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //myItems配列の中身をテキストにして登録した
-        print(indexPath.row)
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-        
-        cell.textLabel?.text = todoList[indexPath.row].todoTitle
-        cell.detailTextLabel?.numberOfLines=0
-        cell.detailTextLabel?.text = todoList[indexPath.row].category + "\n \t \t \t \t \t \t \t \t \t \t" + todoList[indexPath.row].timeSchedule
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        cell.textLabel?.text = self.myItems[indexPath.row] as? String
         return cell
     }
     
     //テーブルビューのセルが押されたら呼ばれる
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)番のセルを選択しました！ ")
+        let todoCreate = TodoCreate()
+        todoCreate.category = myItems[indexPath.row] as! String
+        todoCreate.timeSchedule = timeSchedule
+        todoCreate.todoTitle = todoTitle
+        self.navigationController?.pushViewController(todoCreate, animated: true)
     }
-
+    
     @objc func backBtnTapped() {
-        let todoVC = TodoCreate()
-        self.navigationController?.pushViewController(todoVC, animated: true)
+        let todoCreate = TodoCreate()
+        self.navigationController?.pushViewController(todoCreate, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

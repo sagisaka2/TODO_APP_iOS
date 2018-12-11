@@ -1,9 +1,9 @@
 //
-//  AppDelegate.swift
+//  Todo.swift
 //  TodoSample
 //
-//  Created by 山本 涼太 on 2018/04/05.
-//  Copyright © 2018年 TeamLab. All rights reserved.
+//  Created by 匂坂 勇仁 on H30/11/08.
+//  Copyright © 平成30年 TeamLab. All rights reserved.
 //
 
 import UIKit
@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let vc = ViewController()
+        let naviVC = CustomNavigationController(navigationBarClass: nil, toolbarClass: nil)
+        naviVC.viewControllers = [vc]
+        self.window!.rootViewController = naviVC
         return true
     }
 
