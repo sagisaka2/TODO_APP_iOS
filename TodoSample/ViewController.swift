@@ -6,22 +6,33 @@
 //  Copyright © 平成30年 TeamLab. All rights reserved.
 //
 import UIKit
+import RxSwift
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //テーブルビューインスタンス
     private var myTableView: UITableView!
     
-    var myItems = ["りんご", "すいか"]
+    var tableView: UITableView!
     
-    var titleName = ["aaaa", "bbbb"]
+    var todoList = [Todo]()
     
-    var timeSchedule: NSArray = []
+    var disposeBag = DisposeBag()
+    
+    var addTodo = Todo.karaData
     
     private let refreshCtl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        todoList.append(Todo.dummyData1)
+        todoList.append(Todo.dummyData2)
+        todoList.append(Todo.dummyData3)
+        
+        if addTodo.todoTitle != "" && addTodo.category != "" && addTodo.timeSchedule != ""{
+            todoList.append(addTodo)
+        }
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
@@ -34,14 +45,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         backBtn.tintColor = UIColor.blue
         self.navigationItem.rightBarButtonItem = backBtn
         
-        timeSchedule = ["13:00", "15:00"]
         //Viewの大きさを取得
         let viewWidth = UIScreen.main.bounds.size.width
         let viewHeight = UIScreen.main.bounds.size.height
         
         //テーブルビューの初期化
         myTableView = UITableView()
-        
         //デリゲートの設定
         myTableView.delegate = self
         myTableView.dataSource = self
@@ -56,14 +65,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         myTableView.separatorStyle = .none
         myTableView.tableFooterView = UIView()
         
+//        let label = UILabel(frame: CGRect(x: viewWidth-100, y: self.navigationController!.navigationBar.bounds.size.height+40, width: 100, height: 20))
+//
+//        label.text = todoList[0].timeSchedule
+//        label.textColor = UIColor.black
+//
+//        self.view.addSubview(label)
+        
     }
     
     //テーブルビューのセルの数を設定する
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //テーブルビューのセルの数はmyItems配列の数とした
-        print("cell")
-        print(myItems.count)
-        return myItems.count
+        //テーブルビューのセルの数はtodoList配列の数
+        return todoList.count
     }
     
     //テーブルビューのセルの中身を設定する
@@ -72,8 +86,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print(indexPath.row)
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         
-        cell.textLabel?.text = self.myItems[indexPath.row]
-        cell.detailTextLabel?.text = self.titleName[indexPath.row]
+        cell.textLabel?.text = todoList[indexPath.row].todoTitle
+        cell.detailTextLabel?.numberOfLines=0
+        cell.detailTextLabel?.text = todoList[indexPath.row].category + "\n \t \t \t \t \t \t \t \t \t \t" + todoList[indexPath.row].timeSchedule
         return cell
     }
     
